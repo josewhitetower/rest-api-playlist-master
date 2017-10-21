@@ -19,5 +19,8 @@
   "homepage": "https://github.com/josewhitetower/rest-api-playlist-master#readme",
   "dependencies": {
     "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }

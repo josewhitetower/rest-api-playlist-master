@@ -1,13 +1,10 @@
 const express = require("express");
-
+const routes = require("./routes/api");
 // set up express app
 const app = express();
-// handling get requests
-app.get("/api", function(req, res) {
-  console.log("GET request");
-  // res.end();
-  res.send({ name: "Yoshi" });
-});
+
+//initialize routes
+app.use("/api", routes);
 
 //listen for requests
 app.listen(process.env.port || 4000, function() {
