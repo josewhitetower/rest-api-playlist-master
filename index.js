@@ -2,6 +2,7 @@ const express = require("express");
 
 // set up express app
 const app = express();
+// handling get requests
 app.get("/api", function(req, res) {
   console.log("GET request");
   // res.end();
