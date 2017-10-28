@@ -18,22 +18,65 @@
             <ninja></ninja>
         </div>
     </div>
+
     <script src="https://unpkg.com/vue"></script>
 
     <!-- Create Vue Component -->
+    <template id="template">
+        <div id="ninja-container">
+            <form id="search" v-on:submit="handleSubmit">
+                <label for="">Enter your latitude</label>
+                <label for="">Enter your longitude</label>
+                <input type="text" ref="lng" placeholder="longitude" required>
+                <input type="text" ref="lat" placeholder="latitude" required>
+                <input id="submit" type="submit" value="Find Ninjas">
+            </form>
+            <ul id="list">
+
+            </ul>
+        </div>
+    </template>
     <script>
+
+
         var Ninja = Vue.component('ninja', {
-            template: `<div id="ninja-container">
-                                    <form id ="search">
-                                        <input type="text" ref="lat" placeholder="latitud" required>
-                                     </form>
-                                 </div>`
-        })
+            template: '#template',
+            // data: function () {
+            //     return {
+            //         ninjas: ninjas
+            //     }
+            // },
+
+            methods: {
+                handleSubmit: function (e) {
+                    e.preventDefault();
+                    const lng = this.$refs.lng.value;
+                    const lat = this.$refs.lat.value;
+                    const endpoint = `/api/ninjas?lng=${lng}&lat=${lat}`;
+                    var ninjas;
+                    fetch(endpoint)
+                        .then(data => data.json())
+                        .then(json => {
+                            var htmlNinjas = json.map(ninja => {
+                                return `<li >
+                                         <span  class="${ninja.obj.available}"></span>
+                                                <span class="name">${ninja.obj.name}</span>
+                                                <span class="rank">${ninja.obj.rank}</span>
+                                                <span class="dist">${Math.floor(ninja.dis / 1000)} km
+                                        </s>`
+                            });
+                            ninjas = htmlNinjas
+                            const list = document.querySelector('#list').insertAdjacentHTML("afterbegin", htmlNinjas.join(''))
+
+                        })
+                }
+            }
+        }
+
+        )
 
         var ninjas = new Vue({
-            el: '#ninjas',
-            data: {}
-
+            el: '#ninjas'
         })
     </script>
 </body>
