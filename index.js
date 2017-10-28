@@ -8,7 +8,7 @@ const app = express();
 //connect to mongodb
 mongoose.connect("mongodb://localhost/ninjago");
 mongoose.Promise = global.Promise; //mongodb promise is deprecated
-
+app.use(express.static("public"));
 app.use(bodyParser.json());
 //initialize routes
 app.use("/api", routes);
