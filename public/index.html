@@ -64,11 +64,7 @@
                     fetch(endpoint)
                         .then(data => data.json())
                         .then(data => {
-                            let ninjasArray = [];
-                            data.forEach(data => {
-                                ninjasArray.push(data)
-                            })
-                            this.ninjas = ninjasArray;
+                            this.ninjas = data;
                         });
                 }
             }
