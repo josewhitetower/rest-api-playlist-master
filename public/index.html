@@ -24,7 +24,7 @@
     <!-- Create Vue Component -->
     <template id="template">
         <div id="ninja-container">
-            <form id="search" v-on:submit="handleSubmit">
+            <form id="search" @submit.prevent="handleSubmit">
                 <label for="">Enter your latitude</label>
                 <label for="">Enter your longitude</label>
                 <input type="text" ref="lng" placeholder="longitude" required>
@@ -56,7 +56,7 @@
 
             methods: {
                 handleSubmit: function (e) {
-                    e.preventDefault();
+
                     const lng = this.$refs.lng.value;
                     const lat = this.$refs.lat.value;
                     const endpoint = `/api/ninjas?lng=${lng}&lat=${lat}`;
