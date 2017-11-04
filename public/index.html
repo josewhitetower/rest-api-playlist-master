@@ -27,8 +27,8 @@
             <form id="search" @submit.prevent="handleSubmit">
                 <label for="">Enter your latitude</label>
                 <label for="">Enter your longitude</label>
-                <input type="text" ref="lng" placeholder="longitude" required>
-                <input type="text" ref="lat" placeholder="latitude" required>
+                <input type="number" ref="lng" placeholder="longitude" step=".01" required>
+                <input type="number" ref="lat" placeholder="latitude" step=".01" required>
                 <input id="submit" type="submit" value="Find Ninjas">
             </form>
             <ul id="list">
